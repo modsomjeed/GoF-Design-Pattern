@@ -1,14 +1,8 @@
 import { FixedPackage } from "./packages/fixedPackage";
 import { HourFlexPackage } from "./packages/hourFlexPackage";
 import { PackageFactory } from "./packages/packageFactory";
+import { PackageType } from "./packages/packageType";
 import { SteppingPackage } from "./packages/steppingPackage";
-
-export enum PackageType {
-  FIXED = 'FIXED',
-  HOUR_FLEX = 'HOUR_FLEX',
-  STEPPING = 'STEPPING',
-  UNKNOWN = 'UNKNOWN',
-}
 
 export class Billing {
   private vatRate = 7.0;

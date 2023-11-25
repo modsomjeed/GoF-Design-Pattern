@@ -1,6 +1,6 @@
-import { PackageType } from "../billing";
 import { FixedPackage } from "./fixedPackage";
 import { HourFlexPackage } from "./hourFlexPackage";
+import { PackageType } from "./packageType";
 import { SteppingPackage } from "./steppingPackage";
 import { UnknownPackage } from "./unknowPackage";
 
