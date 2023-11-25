@@ -3,10 +3,13 @@ import { GarageDoorLightOffCommand } from "./command/garageDoorLightOffCommand";
 import { GarageDoorLightOnCommand } from "./command/garageDoorLightOnCommand";
 import { GarageDoorStopCommand } from "./command/garageDoorStopCommand";
 import { GarageDoorUpCommand } from "./command/garageDoorUpCommand";
+import { GardenLightDimCommand } from "./command/gardenLightDimCommand";
+import { GardenLightOffCommand } from "./command/gardenLightOffCommand";
+import { GardenLightOnCommand } from "./command/gardenLightOnCommand";
 import { LightOutdoorOffCommand } from "./command/lightOutdoorOffCommand";
 import { LightOutdoorOnCommand } from "./command/lightOutdoorOnCommand";
 import { Controller } from "./controller";
-import { GarageDoor, Light } from "./devices";
+import { GarageDoor, GardenLight, Light } from "./devices";
 
 describe('[Command - lab] Controller', () => {
   it('[OutdoorLight] should execute device that wrapped with command object', () => {
@@ -62,5 +65,29 @@ describe('[Command - lab] Controller', () => {
     controller.execute(garageDoorStopCommand);
     expect(garageDoor.stop).toBeCalledTimes(1);
 
+  });
+
+  it('[GardenLight] should execute device that wrapped with command object', () => {
+    //given
+    const controller = new Controller();
+
+    const gardenLight = new GardenLight();
+    gardenLight.on = jest.fn();
+    gardenLight.off = jest.fn();
+    gardenLight.dim = jest.fn();
+
+    //when
+    const gardenLightOnCommand = new GardenLightOnCommand(gardenLight);
+    const gardenLightOffCommand = new GardenLightOffCommand(gardenLight);
+    const gardenLightDimCommand = new GardenLightDimCommand(gardenLight);
+
+    controller.execute(gardenLightOnCommand);
+    expect(gardenLight.on).toBeCalledTimes(1);
+
+    controller.execute(gardenLightOffCommand);
+    expect(gardenLight.off).toBeCalledTimes(1);
+
+    controller.execute(gardenLightDimCommand);
+    expect(gardenLight.dim).toBeCalledTimes(1);
   });
 });
