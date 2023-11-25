@@ -1,13 +1,6 @@
-import { GarageDoorDownCommand } from "./command/garageDoorDownCommand";
-import { GarageDoorLightOffCommand } from "./command/garageDoorLightOffCommand";
-import { GarageDoorLightOnCommand } from "./command/garageDoorLightOnCommand";
-import { GarageDoorStopCommand } from "./command/garageDoorStopCommand";
-import { GarageDoorUpCommand } from "./command/garageDoorUpCommand";
-import { GardenLightDimCommand } from "./command/gardenLightDimCommand";
-import { GardenLightOffCommand } from "./command/gardenLightOffCommand";
-import { GardenLightOnCommand } from "./command/gardenLightOnCommand";
-import { LightOutdoorOffCommand } from "./command/lightOutdoorOffCommand";
-import { LightOutdoorOnCommand } from "./command/lightOutdoorOnCommand";
+import { GarageDoorDownCommand, GarageDoorLightOffCommand, GarageDoorLightOnCommand, GarageDoorStopCommand, GarageDoorUpCommand } from "./command/garageDoorCommand";
+import { GardenLightDimCommand, GardenLightOffCommand, GardenLightOnCommand } from "./command/gardenLightCommand";
+import { LightOutdoorOffCommand, LightOutdoorOnCommand } from "./command/lightOutdoorCommand";
 import { Controller } from "./controller";
 import { GarageDoor, GardenLight, Light } from "./devices";
 
