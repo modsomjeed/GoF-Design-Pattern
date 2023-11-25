@@ -1,8 +1,9 @@
 import { GarageDoorDownCommand, GarageDoorLightOffCommand, GarageDoorLightOnCommand, GarageDoorStopCommand, GarageDoorUpCommand } from "./command/garageDoorCommand";
 import { GardenLightDimCommand, GardenLightOffCommand, GardenLightOnCommand } from "./command/gardenLightCommand";
+import { HottubCirculateCommand, HottubJetsOffCommand, HottubJetsOnCommand, HottubSetTemperatureCommand } from "./command/hottubCommand";
 import { LightOutdoorOffCommand, LightOutdoorOnCommand } from "./command/lightOutdoorCommand";
 import { Controller } from "./controller";
-import { GarageDoor, GardenLight, Light } from "./devices";
+import { GarageDoor, GardenLight, Hottub, Light } from "./devices";
 
 describe('[Command - lab] Controller', () => {
   it('[OutdoorLight] should execute device that wrapped with command object', () => {
@@ -82,5 +83,34 @@ describe('[Command - lab] Controller', () => {
 
     controller.execute(gardenLightDimCommand);
     expect(gardenLight.dim).toBeCalledTimes(1);
+  });
+
+  it('[Hottub] should execute device that wrapped with command object', () => {
+    //given
+    const controller = new Controller();
+
+    const hottub = new Hottub();
+    hottub.circulate = jest.fn();
+    hottub.jetsOn = jest.fn();
+    hottub.jetOff = jest.fn();
+    hottub.setTemperature = jest.fn();
+
+    //when
+    const hottubCirculateCommand = new HottubCirculateCommand(hottub);
+    const hottubJetsOnCommand = new HottubJetsOnCommand(hottub);
+    const hottubJetsOffCommand = new HottubJetsOffCommand(hottub);
+    const hottubSetTemperatureCommand = new HottubSetTemperatureCommand(hottub, 30);
+
+    controller.execute(hottubCirculateCommand);
+    expect(hottub.circulate).toBeCalledTimes(1);
+
+    controller.execute(hottubJetsOnCommand);
+    expect(hottub.jetsOn).toBeCalledTimes(1);
+
+    controller.execute(hottubJetsOffCommand);
+    expect(hottub.jetOff).toBeCalledTimes(1);
+
+    controller.execute(hottubSetTemperatureCommand);
+    expect(hottub.setTemperature).toBeCalledTimes(1);
   });
 });
