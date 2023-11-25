@@ -20,15 +20,21 @@ export class Billing {
   }
 
   public monthlyBill(): number {
-    var total = 0.0;
-    if (this.packageType === PackageType.FIXED) {
-      total = new FixedPackage().monthlyBill(this.totalHours);
-    } else if (this.packageType === PackageType.HOUR_FLEX) {
-      total = new HourFlexPackage().monthlyBill(this.totalHours);
-    } else if (this.packageType === PackageType.STEPPING) {
-      total = new SteppingPackage().monthlyBill(this.totalHours);
-    }
+    let total = this.calculateMonthlyFree(this.totalHours, this.packageType);
 
     return total + (total * this.vatRate) / 100;
+  }
+
+  private calculateMonthlyFree(total: number, packageType: string) {
+    switch (packageType) {
+      case PackageType.FIXED:
+        return total = new FixedPackage().monthlyBill(total);
+      case PackageType.HOUR_FLEX:
+        return total = new HourFlexPackage().monthlyBill(total);
+      case PackageType.STEPPING:
+        return total = new SteppingPackage().monthlyBill(total);
+      default:
+        return 0;
+    }
   }
 }
