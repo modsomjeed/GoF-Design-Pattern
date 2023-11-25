@@ -1,5 +1,5 @@
 import { WeatherData } from "./weatherData";
 
-export interface weatherObserver {
+export interface WeatherObserver {
     update(weatherData: WeatherData): void;
 }

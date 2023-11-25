@@ -1,10 +1,9 @@
-import { weatherObserver } from 'observer/lab/weatherObserver';
+import { WeatherObserver } from 'observer/lab/weatherObserver';
 import { WeatherData } from './weatherData';
-import { WeatherObserver } from 'observer/finish/weatherObserver';
 
 export class WeatherStation {
   private data = new WeatherData(0, 0, 0);
-  private observers: weatherObserver[] = [];
+  private observers: WeatherObserver[] = [];
 
   public update(data: WeatherData): void {
     this.data = data;
