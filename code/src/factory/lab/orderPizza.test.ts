@@ -9,7 +9,7 @@ describe('[Factory - lab] OrderPizza from pizza store', () => {
       PizzaType.Classic,
       PizzaSize.Small
     );
-    expect(pizza.description()).toBe(
+    expect(pizza!.description()).toBe(
       'Pizza Classic, Small, Thin, Mozzarella, Tomato, Basil'
     );
   });
@@ -21,7 +21,7 @@ describe('[Factory - lab] OrderPizza from pizza store', () => {
       PizzaType.Cheese,
       PizzaSize.Small
     );
-    expect(pizza.description()).toBe(
+    expect(pizza!.description()).toBe(
       'Pizza Cheese, Small, Thick, Parmesan, Basil, Olive, Onion'
     );
   });
@@ -33,7 +33,7 @@ describe('[Factory - lab] OrderPizza from pizza store', () => {
       PizzaType.Seafood,
       PizzaSize.Small
     );
-    expect(pizza.description()).toBe(
+    expect(pizza!.description()).toBe(
       'Pizza Seafood, Small, Thick, Mozzarella, Tomato, Onion, Shrimp, Tuna'
     );
   });

@@ -13,14 +13,16 @@ import { SeaFoodPizzaFactory } from './seaFoodPizzaFactory';
 
 export class PizzaStore {
   orderPizza(style: PizzaStyle, type: PizzaType, size: PizzaSize) {
-    var pizza: Pizza = new Pizza();
     if (type === PizzaType.Classic) {
-      pizza = new ClassicPizzaFactory().bakePizza(style, size);
-    } else if (type === PizzaType.Cheese) {
-      pizza = new CheesePizzaFactory().bakePizza(style, size);
-    } else if (type === PizzaType.Seafood) {
-      pizza = new SeaFoodPizzaFactory().bakePizza(style, size);
+      return new ClassicPizzaFactory().bakePizza(style, size);
+    } 
+    
+    if (type === PizzaType.Cheese) {
+      return new CheesePizzaFactory().bakePizza(style, size);
     }
-    return pizza;
+    
+    if (type === PizzaType.Seafood) {
+      return new SeaFoodPizzaFactory().bakePizza(style, size);
+    }
   }
 }
