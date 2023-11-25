@@ -1,3 +1,7 @@
+import { FixedPackage } from "./packages/fixedPackage";
+import { HourFlexPackage } from "./packages/hourFlexPackage";
+import { SteppingPackage } from "./packages/steppingPackage";
+
 export enum PackageType {
   FIXED = 'FIXED',
   HOUR_FLEX = 'HOUR_FLEX',
@@ -18,10 +22,12 @@ export class Billing {
   public monthlyBill(): number {
     var total = 0.0;
     if (this.packageType === PackageType.FIXED) {
-      total = 500;
+      total = new FixedPackage().monthlyBill(this.totalHours);
     } else if (this.packageType === PackageType.HOUR_FLEX) {
-      total = this.totalHours * 50;
-    } else total = 0;
+      total = new HourFlexPackage().monthlyBill(this.totalHours);
+    } else if (this.packageType === PackageType.STEPPING) {
+      total = new SteppingPackage().monthlyBill(this.totalHours);
+    }
 
     return total + (total * this.vatRate) / 100;
   }

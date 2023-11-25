@@ -36,4 +36,18 @@ describe('[Strategy - begin] Generate monthly billing based-on total hours and p
     // then
     expect(billing.monthlyBill()).toBe(0);
   });
+
+  it('should return 50 when totalHours less than or equal 50', () => {
+    const totalHours = 50;
+    const packageType = PackageType.STEPPING;
+    const billing = new Billing(totalHours, packageType);
+    expect(billing.monthlyBill()).toBe(53.5);
+  });
+
+  it('should return 50 when totalHours more than 50', () => {
+    const totalHours = 60;
+    const packageType = PackageType.STEPPING;
+    const billing = new Billing(totalHours, packageType);
+    expect(billing.monthlyBill()).toBe(58.85);
+  });
 });
